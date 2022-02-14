@@ -1,0 +1,73 @@
+<script>
+    
+    // controllo se la mail inserita è dell'ateneo (@studenti.unimi.it o @unimi.it)
+    function emailDomainCheck(){
+        /*
+        var submit = document.getElementById("submit");
+        var email = document.getElementById("username").value;
+        var parts = email.split('@');
+        if (parts.length === 2) {
+            if (parts[1] === "studenti.unimi.it" || parts[1] === "unimi.it") {
+                document.getElementById('regResult').style.color = '#f5f5f5';
+                submit.disabled = false;
+            }else{
+                submit.disabled = true;
+                document.getElementById('regResult').style.color = 'black';
+                document.getElementById("regResult").innerHTML = "Usare la mail di ateneo";
+            }
+        }
+        else{
+            submit.disabled = true;
+            document.getElementById('regResult').style.color = 'black';
+            document.getElementById("regResult").innerHTML = "Usare la mail di ateneo";
+        }
+        */
+    }
+    
+    
+    //Controllo password == conferma password
+    var validate = function() {
+        var password = document.getElementById("password").value;
+          var	passwordConf = document.getElementById("passwordConf").value;
+        var submit = document.getElementById("submit");
+        if(password){
+        if(password != passwordConf) {
+            submit.disabled = true;
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Non corrispondono';
+        } else {
+            submit.disabled = false;
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Corrispondono';
+        }}}
+</script>
+
+<main class="form-signin">
+<form  action="/register" method="post">
+
+    <img class="mb-4" src="/UnimiLogo.png" alt="Impossibile caricare il logo" width="100%", height="100%">
+    <h1 class="h3 mb-3 fw-normal">Registrati</h1>
+
+    <div class="form-floating">
+    <input type="email" class="form-control" id="username" name="username" required placeholder="email" oninput="emailDomainCheck()">
+    <label for="email">Indirizzo email</label>
+    </div>
+
+    <div class="form-floating">
+    <input type="password" class="form-control" id="password" name="password" required placeholder="Password" onkeyup="validate();">
+    <label for="password">Password</label>
+    </div>
+
+    <div class="form-floating">
+    <input type="password" class="form-control" id="passwordConf" name="passwordConf" required placeholder="Conferma Password" onkeyup="validate();">
+    <label for="paswordConf">Conferma Password</label>
+    </div>
+    <span id="message" style="color: #f5f5f5;">.</span>
+
+    <button class="w-100 btn btn-lg btn-primary" style="margin-top:10px" id="submit" type="submit">Registrati</button>
+    <a class="w-100 btn btn-lg btn-light" href="/login" id="accedi" style="margin-top:5px">Accedi</a>
+
+    <p id="regResult" style="color: #f5f5f5; padding-top: 15px;">.</p>
+    <p class="mt-5 mb-3 text-muted" id="check">C04222, 2021-2022</p>
+</form>
+</main>

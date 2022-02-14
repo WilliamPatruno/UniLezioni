@@ -1,0 +1,13 @@
+<!-- se la pagina viene renderizzata con la variabile "errorMessage" dichiarata si aggiunge a "layout.ejs" un banner di notifica -->
+<%  if (locals.errorMessage != null){ %>
+    
+    <div class="alert alert-danger" role="alert">
+        <%= errorMessage %>
+    </div>
+
+<% } %> 
+    
+              
+    
+
+

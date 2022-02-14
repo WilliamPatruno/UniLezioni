@@ -1,0 +1,51 @@
+<script>
+    //chiamata ajax per annullare la registrazione ad un evento
+    function elimina(eventId) {
+      var data = {
+        eventSelected: eventId
+      }
+      const xhttp = new window.XMLHttpRequest()
+      xhttp.onload = function() {
+        location.reload(true)  //ricarica pagina dal server
+      }
+      xhttp.open("POST", "/elimina", true)
+      xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+      xhttp.send(JSON.stringify(data))
+    }
+</script>
+
+<h3>Ciao <%= currentUser.username %> </h3>
+<h6>Risulti iscritto ai seguenti corsi: </h6>
+
+<!-- creazione della tabella -->
+<div style="width: 90%; margin: auto">
+    <table id="myTable" class="table table-striped table-bordered table-sm" cellspacing="" width="100%">
+        <thead>
+        <tr>
+            <th class="th-sm">Materia
+            </th>
+            <th class="th-sm">Data
+            </th>
+            <th class="th-sm">Ora
+            </th>
+            <th class="th-sm">Aula
+            </th>
+            <th class="th-sm">Docente
+        </tr>
+        </thead>
+    <tbody>
+        <% events.forEach(element => { 
+            if (currentUser.iscrizioni.includes(element.id)){
+        %> 
+            <tr>
+                <td><%= element.materia %> </td>
+                <td><%= element.date.toISOString().split("T")[0] %> </td>
+                <td>Dalle <%= element.startTime %> alle <%= element.endTime %> </td>
+                <td><%= element.aula %> </td>
+                <td><a href="mailto:<%=element.contacts%>"><%= element.docente %></a></td>
+                <td style="text-align: center;"><button class="btn btn-danger" id="<%=element.id%>" onclick="elimina('<%=element.id%>')">Elimina</button></td>
+            </tr>
+        <% }}); %> 
+    </tbody>
+  </table>
+</div>
