@@ -159,7 +159,7 @@ async function checkOld(){
 
 //prenotazione proveniente da /events
 app.post("/prenota", isLoggedIn, async (req, res) => {
-
+  console.log("test 1")
   var eventId = req.body.eventSelected
   var event = await Event.findOne({id: eventId}).exec()
   var loggedUser = req.user

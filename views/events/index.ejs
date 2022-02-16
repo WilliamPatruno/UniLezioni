@@ -21,6 +21,20 @@
       }
     }
 
+    //chiamata ajax per annullare la registrazione ad un evento
+    function prenota(eventId) {
+      var data = {
+        eventSelected: eventId
+      }
+      const xhttp = new window.XMLHttpRequest()
+      xhttp.onload = function() {
+        resp = xhttp.responseText
+        alert(resp)
+      }
+      xhttp.open("POST", "/prenota", true)
+      xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+      xhttp.send(JSON.stringify(data))
+    }
 </script>
 
 <!-- creazione tabella -->
