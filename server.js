@@ -49,8 +49,7 @@ passport.deserializeUser(User.deserializeUser());
 // AUTHENTICATION ROUTES
 
 app.get("/", function(req, res){
-  checkOld()
-  res.render("auth/login"); 
+  res.redirect("/login"); 
 });
 
 app.get("/profile", isLoggedIn, async function(req, res){
@@ -80,7 +79,8 @@ app.post("/register", function(req, res){
 });
 
 app.get("/login", function(req, res){
-   res.render("auth/login");
+  checkOld()
+  res.render("auth/login");
 });
 
 app.post("/login", passport.authenticate("local",{
