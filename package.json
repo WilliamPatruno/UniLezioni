@@ -4,8 +4,8 @@
   "description": "Web App per la prenotazione dei posti per eventi in aule a capienza limitata",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "prodStart": "node server.js"
+    "devStart": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "William Patruno, C04222",
   "license": "ISC",
